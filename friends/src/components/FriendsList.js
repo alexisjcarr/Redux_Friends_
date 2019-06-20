@@ -1,7 +1,31 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-const FriendsList = () => {
-  return <h1>You are logged in.</h1>;
+import { getFriends } from "../store/actions";
+import Friend from "../components/Friend";
+
+class FriendsList extends Component {
+  componentDidMount() {
+    this.props.getFriends();
+  }
+  render() {
+    return (
+      <div>
+        {this.props.friends.map(friend => (
+          <Friend friend={friend} key={friend.id} />
+        ))}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    friends: state.friends
+  };
 };
 
-export default FriendsList;
+export default connect(
+  mapStateToProps,
+  { getFriends }
+)(FriendsList);
