@@ -30,6 +30,19 @@ export const rootReducer = (state = initialState, action) => {
         loggingIn: false,
         error: "Login Failure"
       };
+    case actionType.GET_FRIENDS_PENDING:
+      return {
+        ...state,
+        fetchingFriends: true,
+        error: ""
+      }
+    case actionType.GET_FRIENDS_SUCCESS:
+      return {
+        ...state,
+        fetchingFriends: false,
+        error: "",
+        friends: action.payload,
+      }
     default:
       return state;
   }

@@ -25,6 +25,14 @@ export const GET_FRIENDS_SUCCESS = "GET_FRIENDS_SUCCESS";
 export const GET_FRIENDS_FAILURE = "GET_FRIENDS_FAILURE";
 
 export const getFriends = () => dispatch => {
-    dispatch({ type: GET_FRIENDS_PENDING});
-    
-}
+  dispatch({ type: GET_FRIENDS_PENDING });
+  axiosWithAuth()
+    .get("/api/friends")
+    .then(res => {
+      console.log(res);
+      dispatch({ type: GET_FRIENDS_SUCCESS, payload: res.data.data });
+    })
+    .catch(err => {
+      dispatch({ type: GET_FRIENDS_FAILURE });
+    });
+};
