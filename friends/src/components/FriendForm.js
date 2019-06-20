@@ -1,8 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
+import styled from "styled-components";
 
 import { saveFriend } from "../store/actions";
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  input[type="text"] {
+    height: 40px;
+    border-radius: 12px;
+    width: 50%;
+    background-color: alice-blue;
+  }
+  button {
+    height: 40px;
+    border-radius: 12px;
+  }
+`;
 
 class FriendForm extends Component {
   constructor(props) {
@@ -38,7 +56,7 @@ class FriendForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.addFriend}>
+      <Form onSubmit={this.addFriend}>
         <input
           type="text"
           name="name"
@@ -67,7 +85,7 @@ class FriendForm extends Component {
             "Save Friend"
           )}
         </button>
-      </form>
+      </Form>
     );
   }
 }
