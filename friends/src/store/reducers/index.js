@@ -28,21 +28,39 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
-        error: "Login Failure"
+        error: action.payload
       };
     case actionType.GET_FRIENDS_PENDING:
       return {
         ...state,
         fetchingFriends: true,
         error: ""
-      }
+      };
     case actionType.GET_FRIENDS_SUCCESS:
       return {
         ...state,
         fetchingFriends: false,
         error: "",
-        friends: action.payload,
-      }
+        friends: action.payload
+      };
+    case actionType.SAVE_FRIEND_PENDING:
+      return {
+        ...state,
+        error: "",
+        savingFriends: false
+      };
+    case actionType.SAVE_FRIEND_SUCCESS:
+      return {
+        ...state,
+        error: "",
+        savingFriends: true
+      };
+    case actionType.SAVE_FRIEND_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        savingFriends: false
+      };
     default:
       return state;
   }

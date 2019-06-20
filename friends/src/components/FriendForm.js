@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 
+import { saveFriend } from "../store/actions";
+
 class FriendForm extends Component {
   constructor(props) {
     super(props);
@@ -23,9 +25,20 @@ class FriendForm extends Component {
     });
   };
 
+  addFriend = e => {
+    this.props.saveFriend(this.state.friend);
+    this.setState({
+      friend: {
+        name: "",
+        age: "",
+        email: ""
+      }
+    });
+  };
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.addFriend}>
         <input
           type="text"
           name="name"
@@ -67,5 +80,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { saveFriend }
 )(FriendForm);
