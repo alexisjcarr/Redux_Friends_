@@ -1,5 +1,11 @@
 const initialState = {
-  friends: []
+  deletingFriend: false,
+  fetchingFriends: false,
+  friends: [],
+  loggingIn: false,
+  savingFriends: false,
+  updatingFriend: false,
+  error: null
 };
 
 export const rootReducer = (state = initialState, action) => {
